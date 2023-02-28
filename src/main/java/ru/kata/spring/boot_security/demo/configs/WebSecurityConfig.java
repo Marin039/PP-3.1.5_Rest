@@ -51,47 +51,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .access("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
                     .anyRequest().authenticated();
         }
-//        http
-//                .csrf()
-//                .disable()
-//                .authorizeRequests()
-//                .antMatchers("/login").not().fullyAuthenticated()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/registration").permitAll()
-//                .antMatchers("/login").permitAll()
-//                //остальные страницы требуют аутентификации
-//                .anyRequest().authenticated()
-//                .and()
-//                //настройка для входа в систему
-//                .formLogin().successHandler(successUserHandler)
-//
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll()
-//                .logoutSuccessUrl("/login")
-//                .and().csrf().disable();
-//    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
-    // аутентификация inMemory
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("user")
-//                        .roles("USER")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

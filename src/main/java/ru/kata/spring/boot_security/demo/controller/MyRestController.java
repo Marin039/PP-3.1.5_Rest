@@ -38,9 +38,9 @@ public class MyRestController {
     }
 
     @GetMapping("/admin/{id}")
-    public User getUserById(@PathVariable Integer id) {
-
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
+        userService.getUserById(id);
+        return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
     }
 
     @GetMapping("/user")
